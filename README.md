@@ -6,8 +6,7 @@ Simple lightweight reCAPTCHA V2 Invisible bypass using the `/reload` feature to 
 
 ## ⚠️ Disclaimer
 
-This tool is provided **for educational and research purposes only**.  
-This is **strictly a demo** and should **not** be used on any website without explicit permission from the owner.
+This tool is provided **for educational and research purposes only**. This is **strictly a demo** and should **not** be used on any website without explicit permission from the owner.
 
 Bypassing reCAPTCHA may violate the terms of service of the target site and Google. Use responsibly and at your own risk.
 
@@ -25,10 +24,52 @@ It is **specific to invisible reCAPTCHA** only and does **not** work on checkbox
 
 ```bash
 pip install requests colorlog
+```
 
-Usage Example
-See demo.py for a full working example:
-Pythonfrom solve import reCAPTCHASolver
+
+## How to Obtain the Required Fields
+
+1. Press **F12** → Go to the **Network** tab.
+2. Trigger the invisible reCAPTCHA on the target page.
+3. Filter requests by typing `reload`.
+4. Click on the `https://recaptcha.net/recaptcha/api2/reload` request.
+
+- **reload_url** → Copy the full request URL.
+- **anchor_url** → Scroll to **Headers** → Copy the **Referer** value.
+- **bgDATA** → Go to **Payload** tab:
+  - Ignore the first line.
+  - Search for the first `*` (`Ctrl + F`).
+  - Copy everything **before** that `*` (should start with `!03AFcWeA6pB...`).
+
+These values usually remain valid for a long time.
+
+---
+
+## Limitations & What Won't Work
+
+- Does **not** work if you see `/bframe` in the endpoints
+- Does **not** work with **reCAPTCHA Enterprise**
+- Does **not** work with visible checkbox challenges
+- Only works on **invisible** reCAPTCHA v2 implementations
+
+---
+
+## Legal & Ethical Warning
+
+Always obtain permission from the website owner before using this tool on their site. Unauthorized use may be illegal.
+
+---
+
+**For research and educational purposes only.**
+
+
+
+## Usage Example
+
+See `demo.py` for a full working example:
+
+```python
+from solve import reCAPTCHASolver
 
 reloadURL = 'https://recaptcha.net/recaptcha/api2/reload?k=6LeXd3cbAAAAAFwQ_UtyHowlKKhJhfMjGPZFXjqr'
 anchorURL = 'https://recaptcha.net/recaptcha/api2/anchor?ar=1&k=6LeXd3cbAAAAAFwQ_UtyHowlKKhJhfMjGPZFXjqr&co=aHR0cHM6Ly9jb3Jwb3JhdGVnaWZ0LmNvbTo0NDM.&hl=id&v=A7KpaEASfhDcK0nXxgQEyyYv&size=invisible&anchor-ms=20000&execute-ms=30000&cb=anifmgn2a798'
@@ -45,33 +86,4 @@ if CaptchaToken:
 else:
     print('[-] Failed to solve reCAPTCHA Demo')
 
-How to Obtain the Required Fields
-
-Press F12 → Go to the Network tab.
-Trigger the invisible reCAPTCHA on the target page.
-Filter requests by typing reload.
-Click on the https://recaptcha.net/recaptcha/api2/reload request.
-
-
-reload_url → Copy the full request URL.
-anchor_url → Scroll to Headers → Copy the Referer value.
-bgDATA → Go to Payload tab:
-Ignore the first line.
-Search for the first * (Ctrl + F).
-Copy everything before that * (should start with !03AFcWeA6pB...).
-
-
-These values usually remain valid for a long time.
-
-Limitations & What Won't Work
-
-Does not work if you see /bframe in the endpoints
-Does not work with reCAPTCHA Enterprise
-Does not work with visible checkbox challenges
-Only works on invisible reCAPTCHA v2 implementations
-
-
-Legal & Ethical Warning
-Always obtain permission from the website owner before using this tool on their site. Unauthorized use may be illegal.
-
-For research and educational purposes only.
+```
