@@ -87,3 +87,6 @@ else:
     print('[-] Failed to solve reCAPTCHA Demo')
 
 ```
+
+<img width="1242" height="219" alt="image" src="https://github.com/user-attachments/assets/cfb2ba74-0105-4e9a-880a-3e65c63d690e" />
+
